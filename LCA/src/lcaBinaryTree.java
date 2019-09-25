@@ -11,5 +11,10 @@ class Node {
 }
 
 public class lcaBinaryTree {
+	
+	static Node createBinaryTree(){
+		Node root = new Node(1);
+		return root;
+	}
 
 }
