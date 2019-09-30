@@ -15,17 +15,16 @@ public class testLowestCommonAncestor {
 	// test creation of binary tree
 	@Test
 	public void testEmptyTree() {
-		Node root = lcaBinaryTree.createBinaryTree();
-		assertNotNull("The binary tree is empty", root);
-		//fail("Not yet implemented");
+		lcaBinaryTree emptyTree = new lcaBinaryTree();
+		assertEquals("The binary tree is empty", -1, emptyTree.findLCA(1, 2));
 	}
 	
-	@Test
-	public void testInvalidSearchParameter() {
-		lowestCommonAncestor(root, c, d);
-		Node root = createBinaryTree();
-		assertNotNull("The binary tree is empty", root);
-		//fail("Not yet implemented");
-	}
+//	@Test
+//	public void testInvalidSearchParameter() {
+//		lowestCommonAncestor(root, c, d);
+//		Node root = createBinaryTree();
+//		assertNotNull("The binary tree is empty", root);
+//		//fail("Not yet implemented");
+//	}
 
 }
