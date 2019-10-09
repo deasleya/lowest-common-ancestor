@@ -34,6 +34,11 @@ public class testLowestCommonAncestor {
 		
 	}
 	
+	@Test
+	public void testContains() {
+		// test contains method checking if binary tree contains given value to ensure only valid parameters are accepted when searching for a lca
+	}
+	
 	// test add() method
 	@Test
 	public void testAdd() {
