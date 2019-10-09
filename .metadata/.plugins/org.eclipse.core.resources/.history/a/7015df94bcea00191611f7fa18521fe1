@@ -89,6 +89,8 @@ public class testLowestCommonAncestor {
 		bt.add(7);
 		bt.add(4);
 		
+		assertEquals(5, bt.root.data);
+		
 		// we wish to delete node with value 1, first assertion shows node with value 1, after delete() carried out, node is null as expected
 		assertEquals(1, bt.root.left.left.data);
 		bt.delete(1);
