@@ -5,14 +5,11 @@ import org.junit.Test;
 
 public class testLowestCommonAncestor {
 	
-	// test Node constructor
+	// test constructor
 	@Test
     public void testConstructor()
     {
-      Node node = new Node(0);
-      assertEquals(0, node.data);
-      assertEquals(null, node.left);
-      assertEquals(null, node.right);
+      new Node(0);
     }
 
 	// test creation of binary tree
@@ -39,7 +36,6 @@ public class testLowestCommonAncestor {
 		// test contains method checking if binary tree contains given value to ensure only valid parameters are accepted when searching for a lca
 	}
 	
-	// test add() method
 	@Test
 	public void testAdd() {
 		

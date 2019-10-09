@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class testLowestCommonAncestor {
 	
-	// test Node constructor
+	// test constructor
 	@Test
     public void testConstructor()
     {
