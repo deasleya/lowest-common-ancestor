@@ -18,7 +18,7 @@ public class testLowestCommonAncestor {
 		
 		// create empty binary tree, expect return of -1 when checking for LCA of 2 values as neither are in binary tree
 		lcaBinaryTree emptyTree = new lcaBinaryTree();
-		assertEquals(null, emptyTree.root);
+		assertEquals(null, emptyTree.root.data);
 		assertEquals("The binary tree is empty", -1, emptyTree.findLCA(1, 2));
 		
 		// add a node to the binary tree for comparison, still expect -1 to be returned as there is only one value
@@ -39,36 +39,16 @@ public class testLowestCommonAncestor {
 	@Test
 	public void testAdd() {
 		
-		// create new empty binary tree, expect root to be null
 		lcaBinaryTree bt = new lcaBinaryTree();
-		assertEquals(null, bt.root);
-
-		// add value of 2, this will become our root, expect root value to be 2 and child nodes to be null
-		bt.add(2);
-		assertEquals(2, bt.root.data);
-		assertEquals(null, bt.root.left);
-		assertEquals(null, bt.root.right);
-		
-		// add node with value of 4, expect this to become right child node of root and left child node to remain null
-		bt.add(4);
-		assertEquals(4, bt.root.right.data);
-		assertEquals(null, bt.root.left);
-		
-		// add node with value of 9, expect this to become right child node{4}, left child node should remain null
-		bt.add(9);
-		assertEquals(9, bt.root.right.right.data);
-		assertEquals(null, bt.root.right.left);
-		
-		// add node with value of 1, expect this to become left child node of root, both child nodes of this node should be null
-		bt.add(1);
-		assertEquals(1, bt.root.left.data);
-		assertEquals(null, bt.root.left.left);
-		assertEquals(null, bt.root.left.right);
-		
-		// add node with value of 7, expect this to become left child node of node{9}
-		bt.add(7);
-		assertEquals(7, bt.root.right.right.left.data);
-	
+		System.out.println(emptyTree.root.data);
+//		assertEquals(3, emptyTree.findLCA(3, 2));
+		emptyTree.add(2);
+		emptyTree.add(4);
+		emptyTree.add(9);
+		emptyTree.add(7);
+		emptyTree.add(12);
+		emptyTree.add(6);
+		assertEquals(7, emptyTree.findLCA(7, 6));
 	}
 	
 	@Test
