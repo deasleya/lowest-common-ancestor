@@ -101,8 +101,6 @@ public class testLowestCommonAncestor {
 		bt.delete(6);
 		assertEquals(7, bt.root.right.left.data);
 		
-		
-		// deleting root, root successfully replaced with smallest value from right subtree {7}
 		assertEquals(5, bt.root.data);
 		bt.delete(5);
 		assertEquals(7, bt.root.data);

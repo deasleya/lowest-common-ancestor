@@ -226,7 +226,25 @@ public class lcaBinaryTree
     			return current.left;
     		current.data = findSmallestValue(root.right);
     		current.right = deleteRecursive(root.right, root.data); 
+    		 //
+//    		         // Delete the inorder successor 
+//    		         root.right = deleteRec(root.right, root.key); 
     	}
+//    	if (value == current.data) {
+//    		if (current.left == null && current.right == null) {
+//    			return null;
+//    		}
+//    		if (current.right == null) {
+//    			return current.left;
+//    		}
+//
+//    		if (current.left == null) {
+//    			return current.right;
+//    		}
+//    	} 
+//    	int smallestValue = findSmallestValue(current.right);
+//    	current.data = smallestValue;
+//    	current.right = deleteRecursive(current.right, smallestValue);
     	return current;
     }
 
@@ -236,7 +254,7 @@ public class lcaBinaryTree
 
     public void delete(int value) {
     	root = deleteRecursive(root, value);
-    	System.out.println("Node with value " + value + " has been deleted");
+    	System.out.println("Node with value " + deleteRecursive(root, value).data + " has been deleted");
     }
     
     

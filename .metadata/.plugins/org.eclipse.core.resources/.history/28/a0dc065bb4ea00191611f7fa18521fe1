@@ -208,46 +208,13 @@ public class lcaBinaryTree
     	root = addRecursive(root, value);
     }
   
-    private Node deleteRecursive(Node current, int value) {
-    	if (current == null) {
-    		return current;
-    	}
-
-    	if (value < current.data) {
-    		current.left = deleteRecursive(current.left, value);
-    	}
-    	else if (value > current.data) {
-    		current.right = deleteRecursive(current.right, value);
-    	}
-    	else {
-    		if(current.left == null)
-    			return current.right;
-    		else if (current.right == null) 
-    			return current.left;
-    		current.data = findSmallestValue(root.right);
-    		current.right = deleteRecursive(root.right, root.data); 
-    	}
-    	return current;
-    }
-
-    private int findSmallestValue(Node root) {
-    	return root.left == null ? root.data : findSmallestValue(root.left);
-    }
-
-    public void delete(int value) {
-    	root = deleteRecursive(root, value);
-    	System.out.println("Node with value " + value + " has been deleted");
-    }
-    
-    
-    
- // Finds the path from root node to given root of the tree. 
+    // Finds the path from root node to given root of the tree. 
     int findLCA(int n1, int n2) { 
         path1.clear(); 
         path2.clear(); 
         return findLCAInternal(root, n1, n2); 
     } 
-    	
+  
     private int findLCAInternal(Node root, int n1, int n2) { 
   
         if (!findPath(root, n1, path1) || !findPath(root, n2, path2)) { 
