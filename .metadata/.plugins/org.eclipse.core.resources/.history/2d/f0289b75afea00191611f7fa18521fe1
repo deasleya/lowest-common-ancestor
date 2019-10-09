@@ -19,12 +19,20 @@ public class testLowestCommonAncestor {
 		assertEquals("The binary tree is empty", -1, emptyTree.findLCA(1, 2));
 	}
 	
-//	@Test
-//	public void testInvalidSearchParameter() {
-//		lowestCommonAncestor(root, c, d);
-//		Node root = createBinaryTree();
-//		assertNotNull("The binary tree is empty", root);
-//		//fail("Not yet implemented");
-//	}
+	@Test
+	public void testContains() {
+		// test contains method checking if binary tree contains given value to ensure only valid parameters are accepted when searching for a lca
+	}
+	
+	@Test
+	public void testAdd() {
+		// test add method checking if node has been correctly added to binary tree
+	}
+	
+	@Test
+	public void testDelete() {
+		// test delete method checking if node has been correctly deleted from binary tree
+	}
 
+	
 }

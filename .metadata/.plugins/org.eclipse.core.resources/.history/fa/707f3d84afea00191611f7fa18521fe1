@@ -15,19 +15,10 @@ public class testLowestCommonAncestor {
 	// test creation of binary tree
 	@Test
 	public void testEmptyTree() {
-		
-		// create empty binary tree, expect return of -1 when checking for LCA of 2 values as neither are in binary tree
 		lcaBinaryTree emptyTree = new lcaBinaryTree();
 		assertEquals("The binary tree is empty", -1, emptyTree.findLCA(1, 2));
-		
-		// add a node to the binary tree for comparison, still expect -1 to be returned as there is only one value
+		emptyTree.add(3);
 		emptyTree.add(2);
-		assertEquals("The binary tree is empty", -1, emptyTree.findLCA(1, 2));
-		
-		// add a second node and look up LCA of two values both now contained in binary tree, expect root value to be returned (2)
-		emptyTree.add(1);
-		assertEquals("The binary tree is empty", 2, emptyTree.findLCA(1, 2));
-		
 	}
 	
 	@Test
@@ -37,7 +28,7 @@ public class testLowestCommonAncestor {
 	
 	@Test
 	public void testAdd() {
-		
+		// test add method checking if node has been correctly added to binary tree
 	}
 	
 	@Test
