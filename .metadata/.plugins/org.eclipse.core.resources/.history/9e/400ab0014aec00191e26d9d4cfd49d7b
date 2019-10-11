@@ -7,7 +7,7 @@ public class testLowestCommonAncestor {
 	
 	// test Node constructor
 	@Test
-    public void testNodeConstructor()
+    public void testConstructor()
     {
       Node node = new Node(0);
       assertEquals(0, node.data);
@@ -17,10 +17,10 @@ public class testLowestCommonAncestor {
 
 	// test creation of binary tree
 	@Test
-	public void testLCAConstructor() {
+	public void testLcaBinaryTreeConstructor() {
 		
 		// create empty binary tree and check methods run
-		LCA bt = new LCA();
+		lcaBinaryTree bt = new lcaBinaryTree();
 		assertEquals(null, bt.root);
 		bt.add(1);
 		bt.delete(1);
@@ -32,7 +32,7 @@ public class testLowestCommonAncestor {
 	public void testAdd() {
 		
 		// create new empty binary tree, expect root to be null
-		LCA bt = new LCA();
+		lcaBinaryTree bt = new lcaBinaryTree();
 		assertEquals(null, bt.root);
 
 		// add value of 2, this will become our root, expect root value to be 2 and child nodes to be null
@@ -68,7 +68,7 @@ public class testLowestCommonAncestor {
 	public void testDelete() {
 		
 		// create and populate binary tree
-		LCA bt = new LCA();
+		lcaBinaryTree bt = new lcaBinaryTree();
 		bt.add(5);
 		bt.add(2);
 		bt.add(8);
@@ -100,7 +100,7 @@ public class testLowestCommonAncestor {
 		public void testFindLCA() {
 			
 			// create and populate binary tree
-			LCA bt = new LCA();
+			lcaBinaryTree bt = new lcaBinaryTree();
 			
 			// check when tree is empty
 			assertEquals("The binary tree is empty", -1, bt.findLCA(1, 2));

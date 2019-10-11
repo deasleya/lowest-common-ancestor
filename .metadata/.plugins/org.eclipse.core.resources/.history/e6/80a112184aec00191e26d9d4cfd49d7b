@@ -7,7 +7,7 @@ public class testLowestCommonAncestor {
 	
 	// test Node constructor
 	@Test
-    public void testNodeConstructor()
+    public void testConstructor()
     {
       Node node = new Node(0);
       assertEquals(0, node.data);
@@ -17,7 +17,7 @@ public class testLowestCommonAncestor {
 
 	// test creation of binary tree
 	@Test
-	public void testLCAConstructor() {
+	public void testLcaBinaryTreeConstructor() {
 		
 		// create empty binary tree and check methods run
 		LCA bt = new LCA();

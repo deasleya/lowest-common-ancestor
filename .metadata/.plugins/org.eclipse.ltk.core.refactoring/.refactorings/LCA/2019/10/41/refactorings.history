@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;lcaBinaryTree&apos; to &apos;LCA&apos;&#x0D;&#x0A;- Original project: &apos;LCA&apos;&#x0D;&#x0A;- Original element: &apos;lcaBinaryTree&apos;&#x0D;&#x0A;- Renamed element: &apos;LCA&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;lcaBinaryTree&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{lcaBinaryTree.java[lcaBinaryTree" matchStrategy="1" name="LCA" qualified="false" references="true" similarDeclarations="false" stamp="1570813821565" textual="false" version="1.0"/>
+</session>
