@@ -17,13 +17,11 @@ public class testLowestCommonAncestor {
 
 	// test creation of binary tree
 	@Test
-	public void testLcaBinaryTreeConstructor() {
+	public void testEmptyTree() {
 		
-		// create empty binary tree and check methods run
-		lcaBinaryTree bt = new lcaBinaryTree();
-		assertEquals(null, bt.root);
-		bt.add(1);
-		bt.delete(1);
+		// create empty binary tree, expect return of -1 when checking for LCA of 2 values as neither are in binary tree
+		lcaBinaryTree emptyTree = new lcaBinaryTree();
+		assertEquals(null, emptyTree.root);
 		
 	}
 	
