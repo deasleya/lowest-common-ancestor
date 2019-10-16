@@ -189,6 +189,12 @@ public class testLowestCommonAncestor {
 
 	}
 
+	// make sure vertex validity is correctly tested, and -1 is returned if vertex is invalid
+	@Test 
+	public void TestValidateVertex(){
+
+	}
+
 	// test E() function returns correct number of edges
 	@Test
 	public void testE() {
