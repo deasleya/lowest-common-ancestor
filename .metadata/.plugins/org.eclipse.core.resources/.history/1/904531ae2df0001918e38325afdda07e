@@ -1,22 +1,26 @@
 import java.util.ArrayList;
 import java.util.List; 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
 
-
-// Node class
+// Node class used for both implementations 
 class Node { 
 	int data; 
 	Node left, right; 
+	ArrayList<Node> ancestors;
 
 	Node(int value) { 
 		data = value; 
 		left = right = null; 
+		ancestors=null;
 	} 
 } 
 
 public class LCA 
 {
 
-	Node root; //initialise root
+	Node root; //initialises root
 	List<Integer> path1 = new ArrayList<>(); //creates list for node 1's path
 	List<Integer> path2 = new ArrayList<>(); // creates list for node 2's path
 
@@ -137,4 +141,8 @@ public class LCA
 		return false; 
 	} 
 
+
+
+	
+	
 }

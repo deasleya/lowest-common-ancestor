@@ -133,7 +133,6 @@ public class testLowestCommonAncestor {
 			// where one or both parameters are not in the binary tree
 			assertEquals(-1, bt.findLCA(8,11));
 			assertEquals(-1, bt.findLCA(11,3));
-			
 		}
 	
 }
