@@ -145,73 +145,59 @@ public class testLowestCommonAncestor {
 
 	// test DAG constructor working as expected
 	@Test
-	public void testDAGConstructor() {
+	void testDAGConstructor() {
 		
-		// test new DAG initialised with 6 vertices
 		DAG dag = new DAG(6);
 		assertEquals(6, dag.V());
 		assertEquals(0, dag.E());
 		
-		// test new DAG initialised with no vertices
-		DAG dag1 = new DAG(0);
-		assertEquals(0, dag1.V());
-		assertEquals(0, dag1.E());
-		
-		// test exception thrown when number of vertices is negative, V should remain null
-		try {
-			DAG dagException = new DAG(-1);
-			assertEquals(null, dagException.V());
-		} 
-		catch (IllegalArgumentException e) {
-		}
-
 	}
 
 	// test V() function returns correct number of vertices
 	@Test
-	public void testV() {
+	void testV() {
 
 	}
 
 	// make sure vertex validity is correctly tested, and -1 is returned if vertex is invalid
 	@Test 
-	public void TestValidateVertex(){
+	void TestValidateVertex(){
 
 	}
 
 	// test E() function returns correct number of edges
 	@Test
-	public void testE() {
+	void testE() {
 
 	}
 
 	// test addEdge() function adds edge as expected
 	@Test
-	public void testAddEdge() {
+	void testAddEdge() {
 
 	}
 
 	// test inDegree() function returns correct number of incident edges
 	@Test
-	public void testInDegree() {
+	void testInDegree() {
 
 	}
 
 	// test outDegree() function returns correct number of outgoing edges
 	@Test
-	public void testOutDegree() {
+	void testOutDegree() {
 
 	}
 
 	// test if hasCycle() method can correctly differentiate between cyclical and non-cyclical graphs
 	@Test
-    public void testHasCycle() {
+	void testHasCycle() {
 
 	}
 
 	// test findLCA() method in DAG.java correctly identifies lowest common ancestor 
 	@Test 
-	public void testFindLCADAG() {
+	void testFindLCADAG() {
 
 	}
 

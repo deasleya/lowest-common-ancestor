@@ -171,6 +171,24 @@ public class testLowestCommonAncestor {
 	@Test
 	public void testV() {
 
+		// test with DAG initialised with 6 vertices
+				DAG dag = new DAG(6);
+				assertEquals(6, dag.V());
+				
+				// test with DAG initialised with no vertices
+				DAG dag1 = new DAG(0);
+				assertEquals(0, dag1.V());
+				
+				// test with DAG initialised with negative number of vertices
+				try {
+				DAG dag2 = new DAG(-1);
+				assertEquals(null, dag2.V());
+				}
+				catch (IllegalArgumentException e) {
+				}
+				
+				
+				
 	}
 
 	// make sure vertex validity is correctly tested, and -1 is returned if vertex is invalid

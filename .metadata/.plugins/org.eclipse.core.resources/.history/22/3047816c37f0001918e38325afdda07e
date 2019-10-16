@@ -152,15 +152,9 @@ public class testLowestCommonAncestor {
 		assertEquals(6, dag.V());
 		assertEquals(0, dag.E());
 		
-		// test new DAG initialised with no vertices
-		DAG dag1 = new DAG(0);
-		assertEquals(0, dag1.V());
-		assertEquals(0, dag1.E());
-		
-		// test exception thrown when number of vertices is negative, V should remain null
+		//test to make sure if vertex below 0 entered, exception thrown
 		try {
 			DAG dagException = new DAG(-1);
-			assertEquals(null, dagException.V());
 		} 
 		catch (IllegalArgumentException e) {
 		}
