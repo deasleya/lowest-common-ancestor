@@ -217,17 +217,9 @@ public class testLowestCommonAncestor {
 		dag.addEdge(4, 5);
 		assertEquals(5, dag.E());
 		
-		// add another edge from vertex 3
-		dag.addEdge(3, 5);
-		assertEquals(6, dag.E());
-		
-		// cannot add edge where vertex is outside set of vertices 0 to N-1 (5), validateVertex() function should prevent this case, expect number of edges still equal to 6
-		dag.addEdge(5, 6);
-		assertEquals(6, dag.E());
-		
-		dag.addEdge(-1, 2);
-		assertEquals(6, dag.E());
-		
+		// DAG can only have N-1 vertices, so this one can't have more than 5, test should confirm this when we try to add another edge
+		dag.addEdge(4, 6);
+		assertEquals(5, dag.E());
 	}
 
 	// test inDegree() function returns correct number of incident edges

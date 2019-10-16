@@ -199,35 +199,23 @@ public class testLowestCommonAncestor {
 	@Test
 	public void testAddEdge() {
 
-		// create 6 node DAG with no edges as yet
 		DAG dag = new DAG(6);
 		assertEquals(0, dag.E());
 		
-		// add first edge
 		dag.addEdge(0, 1);
 		assertEquals(1, dag.E());
 		
-		// second edge
 		dag.addEdge(1, 2);
 		assertEquals(2, dag.E());
 		
-		// third, fourth, fifth edge
 		dag.addEdge(2, 3);
 		dag.addEdge(3, 4);
 		dag.addEdge(4, 5);
 		assertEquals(5, dag.E());
 		
-		// add another edge from vertex 3
-		dag.addEdge(3, 5);
-		assertEquals(6, dag.E());
-		
-		// cannot add edge where vertex is outside set of vertices 0 to N-1 (5), validateVertex() function should prevent this case, expect number of edges still equal to 6
+		dag.addEdge(4, 6);
 		dag.addEdge(5, 6);
-		assertEquals(6, dag.E());
-		
-		dag.addEdge(-1, 2);
-		assertEquals(6, dag.E());
-		
+		assertEquals(7, dag.E());
 	}
 
 	// test inDegree() function returns correct number of incident edges
