@@ -189,7 +189,13 @@ public class testLowestCommonAncestor {
 
 	}
 
-	// test addEdge() function adds edge as expected, also testing E() in this test method
+	// test E() function returns correct number of edges
+	@Test
+	public void testE() {
+
+	}
+
+	// test addEdge() function adds edge as expected
 	@Test
 	public void testAddEdge() {
 
