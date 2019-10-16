@@ -4,35 +4,35 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class testLowestCommonAncestor {
-
+	
 	// Development Task 1 - LCA Binary Tree Implementation Tests
-
+	
 	// test Node constructor
 	@Test
-	public void testNodeConstructor()
-	{
-		Node node = new Node(0);
-		assertEquals(0, node.data);
-		assertEquals(null, node.left);
-		assertEquals(null, node.right);
-	}
+    public void testNodeConstructor()
+    {
+      Node node = new Node(0);
+      assertEquals(0, node.data);
+      assertEquals(null, node.left);
+      assertEquals(null, node.right);
+    }
 
 	// test creation of binary tree
 	@Test
 	public void testLCAConstructor() {
-
+		
 		// create empty binary tree and check methods run
 		LCA bt = new LCA();
 		assertEquals(null, bt.root);
 		bt.add(1);
 		bt.delete(1);
-
+		
 	}
-
+	
 	// test add() method
 	@Test
 	public void testAdd() {
-
+		
 		// create new empty binary tree, expect root to be null
 		LCA bt = new LCA();
 		assertEquals(null, bt.root);
@@ -42,33 +42,33 @@ public class testLowestCommonAncestor {
 		assertEquals(2, bt.root.data);
 		assertEquals(null, bt.root.left);
 		assertEquals(null, bt.root.right);
-
+		
 		// add node with value of 4, expect this to become right child node of root and left child node to remain null
 		bt.add(4);
 		assertEquals(4, bt.root.right.data);
 		assertEquals(null, bt.root.left);
-
+		
 		// add node with value of 9, expect this to become right child node{4}, left child node should remain null
 		bt.add(9);
 		assertEquals(9, bt.root.right.right.data);
 		assertEquals(null, bt.root.right.left);
-
+		
 		// add node with value of 1, expect this to become left child node of root, both child nodes of this node should be null
 		bt.add(1);
 		assertEquals(1, bt.root.left.data);
 		assertEquals(null, bt.root.left.left);
 		assertEquals(null, bt.root.left.right);
-
+		
 		// add node with value of 7, expect this to become left child node of node{9}
 		bt.add(7);
 		assertEquals(7, bt.root.right.right.left.data);
-
+	
 	}
-
+	
 	// test delete() method checking if node has been correctly deleted from binary tree
 	@Test
 	public void testDelete() {
-
+		
 		// create and populate binary tree
 		LCA bt = new LCA();
 		bt.add(5);
@@ -78,123 +78,105 @@ public class testLowestCommonAncestor {
 		bt.add(1);
 		bt.add(7);
 		bt.add(4);
-
+		
 		// we wish to delete node with value 1, first assertion shows node with value 1, after delete() carried out, node is null as expected
 		assertEquals(1, bt.root.left.left.data);
 		bt.delete(1);
 		assertEquals(null, bt.root.left.left);
-
+		
 		// we wish to delete node with value 6, first assertion shows node with value 6, after delete() carried out, node{6} has been deleted and replaced with child node {7}
 		assertEquals(6, bt.root.right.left.data);
 		bt.delete(6);
 		assertEquals(7, bt.root.right.left.data);
-
-
+		
+		
 		// deleting root, root successfully replaced with smallest value from right subtree {7}
 		assertEquals(5, bt.root.data);
 		bt.delete(5);
 		assertEquals(7, bt.root.data);
-
+		
 	}
 
 	// test findLCA() method in binary tree implementation to ensure correct value is being returned
-	@Test
-	public void testFindLCA() {
+		@Test
+		public void testFindLCA() {
+			
+			// create and populate binary tree
+			LCA bt = new LCA();
+			
+			// check when tree is empty
+			assertEquals("The binary tree is empty", -1, bt.findLCA(1, 2));
+			
+			bt.add(5);
+			
+			// check when tree only has 1 node
+			assertEquals(-1, bt.findLCA(5, 2));
+			
+			bt.add(2);
+			bt.add(8);
+			bt.add(6);
+			bt.add(1);
+			bt.add(7);
+			bt.add(4);
+			
+			// where one of parameters is LCA
+			assertEquals(5, bt.findLCA(8,5));
+			assertEquals(2, bt.findLCA(2,4));
+			
+			// where parameters are same
+			// our binary tree implementation does not allow for duplicates, but parameters may refer to one node twice
+			assertEquals(5, bt.findLCA(5,5));
+			
+			// where parameter nodes are in different subtrees
+			assertEquals(5, bt.findLCA(7,4));
+			assertEquals(2, bt.findLCA(4,1));
+			assertEquals(5, bt.findLCA(8,2));
+			
+			// where one or both parameters are not in the binary tree
+			assertEquals(-1, bt.findLCA(8,11));
+			assertEquals(-1, bt.findLCA(11,3));
+			
+		}
+		
+		
+		
+		
+		// Development Task 2 - LCA DAG Implementation Tests
+		
+		// test DAG constructor working as expected
+		@Test
+		void testDAGConstructor() {
+			
+		}
+		
+		// test V() function returns correct number of vertices
+		@Test
+		void testV() {
+			
+		}
+		
+		// make sure vertex validity is correctly tested, and -1 is returned if vertex is invalid
+		@Test 
+		void TestValidateVertex(){
+			
+		}
+		
+		// test E() function returns correct number of edges
+		@Test
+		void testE() {
+			
+		}
 
-		// create and populate binary tree
-		LCA bt = new LCA();
-
-		// check when tree is empty
-		assertEquals("The binary tree is empty", -1, bt.findLCA(1, 2));
-
-		bt.add(5);
-
-		// check when tree only has 1 node
-		assertEquals(-1, bt.findLCA(5, 2));
-
-		bt.add(2);
-		bt.add(8);
-		bt.add(6);
-		bt.add(1);
-		bt.add(7);
-		bt.add(4);
-
-		// where one of parameters is LCA
-		assertEquals(5, bt.findLCA(8,5));
-		assertEquals(2, bt.findLCA(2,4));
-
-		// where parameters are same
-		// our binary tree implementation does not allow for duplicates, but parameters may refer to one node twice
-		assertEquals(5, bt.findLCA(5,5));
-
-		// where parameter nodes are in different subtrees
-		assertEquals(5, bt.findLCA(7,4));
-		assertEquals(2, bt.findLCA(4,1));
-		assertEquals(5, bt.findLCA(8,2));
-
-		// where one or both parameters are not in the binary tree
-		assertEquals(-1, bt.findLCA(8,11));
-		assertEquals(-1, bt.findLCA(11,3));
-
-	}
-
-
-
-
-	// Development Task 2 - LCA DAG Implementation Tests
-
-	// test DAG constructor working as expected
-	@Test
-	void testDAGConstructor() {
-
-	}
-
-	// test V() function returns correct number of vertices
-	@Test
-	void testV() {
-
-	}
-
-	// make sure vertex validity is correctly tested, and -1 is returned if vertex is invalid
-	@Test 
-	void TestValidateVertex(){
-
-	}
-
-	// test E() function returns correct number of edges
-	@Test
-	void testE() {
-
-	}
-
-	// test addEdge() function adds edge as expected
-	@Test
-	void testAddEdge() {
-
-	}
-
-	// test inDegree() function returns correct number of incident edges
-	@Test
-	void testInDegree() {
-
-	}
-
-	// test outDegree() function returns correct number of outgoing edges
-	@Test
-	void testOutDegree() {
-
-	}
-
-	// test if hasCycle() method can correctly differentiate between cyclical and non-cyclical graphs
-	@Test
-	void testHasCycle() {
-
-	}
-
-	// test findLCA() method in DAG.java correctly identifies lowest common ancestor 
-	@Test 
-	void testFindLCADAG() {
-
-	}
-
+		// test if hasCycle() method can correctly differentiate between cyclical and non-cyclical graphs
+		@Test
+		void testHasCycle() {
+			
+		}
+		
+		// test findLCA() method in DAG.java correctly identifies lowest common ancestor 
+		@Test 
+		void testFindLCADAG() {
+			
+		}
+	
 }

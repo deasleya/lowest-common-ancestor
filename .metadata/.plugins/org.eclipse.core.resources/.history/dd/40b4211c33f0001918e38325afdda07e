@@ -15,7 +15,8 @@ public class DAG {
 
 
 
-	public DAG(int V) {
+	public DAG(int V)
+	{
 		if (V < 0) throw new IllegalArgumentException("Number of vertices in a Digraph must be nonnegative");
 		this.V = V;
 		this.E = 0;
@@ -33,50 +34,56 @@ public class DAG {
 		return V;	
 	}
 
-	// return -1 unless 0 <= v < V
-	private int validateVertex(int v) {
-		if (v < 0 || v >= V)
-			return -1;
-		else
-			return 1;
-	}
-
 	// return number of vertices in digraph
 	public int E() {
 		return E;
 	}
 
+	private int validateVertex(int v) {
+		if (v < 0 || v >= V)
+			return -1;
+		else
+			return 1;}
+
+
 	// adds a directed edge from v to w
-	public void addEdge(int v, int w) {
-		if((validateVertex(v)>0)&&(validateVertex(w)>0)) {
+	public void addEdge(int v, int w)
+	{
+		if((validateVertex(v)>0)&&(validateVertex(w)>0))
+		{
 			adj[v].add(w);
 			indegree[w]++;
 			E++;
 		}
-		else
+		else{
 			System.out.println("Please enter vertices between 0 & n-1");
+		}
+
 	}
 
 	// returns number of directed edges incident to vertex v
 	public int indegree(int v) {
-		if(validateVertex(v)<0)
+		if(validateVertex(v)<0){
 			return -1;
-		else
+		}
+		else{
 			return indegree[v];
+		}
 	}
 
 	// returns number of directed edges from vertex v
 	public int outdegree(int v) {
-		if(validateVertex(v)<0)
+		if(validateVertex(v)<0){
 			return -1;
-		else
+		}
+		else{
 			return adj[v].size();
+		}
 	}
 
 	// returns the vertices adjacent to v
-	public Iterable<Integer> adj(int v) { 
-		return adj[v]; 
-	}
+	public Iterable<Integer> adj(int v)
+	{ return adj[v]; }
 
 	// checking if graph is actually acyclical
 	public boolean hasCycle() {
@@ -84,13 +91,14 @@ public class DAG {
 	}
 
 	public void findCycle(int v) {
+
 		marked[v] = true;
 		stack[v] = true;
 
 		for (int w : adj(v)) {
-			if(!marked[w])
+			if(!marked[w]) {
 				findCycle(w);
-			else if (stack[w]) {
+			} else if (stack[w]) {
 				hasCycle = true;
 				return;
 			}
@@ -111,14 +119,13 @@ public class DAG {
 	}	 
 
 	// returns lowest common ancestor of v and w
-	public int findLCA(int v, int w) {
+	public int findLCA(int v, int w){
 		findCycle(0);
-		if(hasCycle) {
+		if(hasCycle){
 			// graph is not a DAG
 			return -1;
 		}
-
-		// reverse the DAG for easier traversal
+		// reverse the DAG, allows easier traversal
 		DAG backwards = reverse();
 
 		// locate the two points in the graph
@@ -129,9 +136,9 @@ public class DAG {
 
 		// cycle through BFS paths, adding all common ancestors to the arrayList
 		// return the first one found, as it is the closest to the nodes and hence the lowest common ancestor
-		for(int i = 0; i < vPath.size(); i++) {
-			for(int t = 0; t < wPath.size(); t++) {		
-				if(vPath.get(i) == wPath.get(t)) {
+		for(int i = 0; i < vPath.size(); i++){
+			for(int t = 0; t < wPath.size(); t++){		
+				if(vPath.get(i) == wPath.get(t)){
 					commonAncestors.add(vPath.get(i));	
 					found = true;
 				}
@@ -146,7 +153,8 @@ public class DAG {
 	}
 
 	// breadth first search of graph
-	public ArrayList<Integer> BFS(int s) {
+	public ArrayList<Integer> BFS(int s)
+	{
 		boolean visited[] = new boolean[V];
 		LinkedList<Integer> queue = new LinkedList<Integer>();
 		ArrayList<Integer> result = new ArrayList<Integer>();
