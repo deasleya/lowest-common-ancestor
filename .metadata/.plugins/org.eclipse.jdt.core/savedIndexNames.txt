@@ -15,7 +15,6 @@ INDEX VERSION 1.131+U:\3rd year\Software-Engineering\lowest-common-ancestor\.met
 565899265.index
 136936140.index
 2033839043.index
-59799138.index
 2546076573.index
 3893014623.index
 1312586118.index
