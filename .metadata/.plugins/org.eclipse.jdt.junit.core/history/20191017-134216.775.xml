@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="testLowestCommonAncestor" project="LCA" tests="12" started="12" failures="0" errors="0" ignored="0">
+  <testsuite name="testLowestCommonAncestor" time="0.002">
+    <testcase name="testAddEdge" classname="testLowestCommonAncestor" time="0.0"/>
+    <testcase name="testDAGConstructor" classname="testLowestCommonAncestor" time="0.0"/>
+    <testcase name="testAdd" classname="testLowestCommonAncestor" time="0.0"/>
+    <testcase name="testFindLCA" classname="testLowestCommonAncestor" time="0.0"/>
+    <testcase name="testNodeConstructor" classname="testLowestCommonAncestor" time="0.0"/>
+    <testcase name="testFindLCADAG" classname="testLowestCommonAncestor" time="0.001"/>
+    <testcase name="testInDegree" classname="testLowestCommonAncestor" time="0.0"/>
+    <testcase name="testV" classname="testLowestCommonAncestor" time="0.0"/>
+    <testcase name="testHasCycle" classname="testLowestCommonAncestor" time="0.0"/>
+    <testcase name="testDelete" classname="testLowestCommonAncestor" time="0.0"/>
+    <testcase name="testOutDegree" classname="testLowestCommonAncestor" time="0.0"/>
+    <testcase name="testLCAConstructor" classname="testLowestCommonAncestor" time="0.001"/>
+  </testsuite>
+</testrun>

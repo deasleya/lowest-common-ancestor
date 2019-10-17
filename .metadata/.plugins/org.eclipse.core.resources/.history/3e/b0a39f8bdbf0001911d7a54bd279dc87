@@ -230,24 +230,23 @@ public class testLowestCommonAncestor {
 
 		// create 6 node DAG with no edges as yet
 		DAG dag = new DAG(6);
-		assertEquals(0, dag.inDegree(0));
+		assertEquals(0, dag.indegree(0));
 
 		// add first edge and check in degree for 2 vertices involved
 		dag.addEdge(0, 1);
-		assertEquals(0, dag.inDegree(0));
-		assertEquals(1, dag.inDegree(1));
+		assertEquals(0, dag.indegree(0));
+		assertEquals(1, dag.indegree(1));
 
 		// second edge directed at 1
 		dag.addEdge(4, 1);
-		assertEquals(2, dag.inDegree(1));
+		assertEquals(2, dag.indegree(1));
 
 		// third edge into 1
 		dag.addEdge(2, 1);
-		assertEquals(3, dag.inDegree(1));
+		assertEquals(3, dag.indegree(1));
 		
-		// check inDegree() returns -1 when parameter v is not included in DCA vertices
-		assertEquals(-1, dag.inDegree(-1));
-		assertEquals(-1, dag.inDegree(6));
+				assertEquals(1, dag.indegree(-1));
+				assertEquals(1, dag.indegree(6));
 				
 	}
 
