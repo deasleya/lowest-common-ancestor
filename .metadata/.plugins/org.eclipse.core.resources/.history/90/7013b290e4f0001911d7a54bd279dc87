@@ -340,7 +340,6 @@ public class testLowestCommonAncestor {
 		// test above hypothesis
 		assertEquals(4, dag.findLCADAG(6, 5));
 		
-		// test to ensure we cannot run findLCADAG() method on parameters outside of set of vertices
 		try {
 		assertEquals(4, dag.findLCADAG(8, 5));
 		} catch (java.lang.ArrayIndexOutOfBoundsException e) {
