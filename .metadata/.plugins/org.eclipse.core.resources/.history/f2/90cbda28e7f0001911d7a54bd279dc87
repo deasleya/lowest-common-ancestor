@@ -16,7 +16,7 @@ public class DAG {
 
 
 	public DAG(int V) {
-		if (V < 0) throw new IllegalArgumentException("Number of vertices in a digraph must be nonnegative");
+		if (V < 0) throw new IllegalArgumentException("Number of vertices in a Digraph must be nonnegative");
 		this.V = V;
 		this.E = 0;
 		indegree = new int[V];
@@ -41,7 +41,7 @@ public class DAG {
 			return 1;
 	}
 
-	// return number of edges in digraph
+	// return number of vertices in digraph
 	public int E() {
 		return E;
 	}
@@ -57,7 +57,7 @@ public class DAG {
 			System.out.println("Please enter vertices between 0 & n-1");
 	}
 
-	// returns number of directed edges going in to vertex v
+	// returns number of directed edges incident to vertex v
 	public int inDegree(int v) {
 		if(validateVertex(v)<0)
 			return -1;
@@ -65,7 +65,7 @@ public class DAG {
 			return indegree[v];
 	}
 
-	// returns number of directed edges coming from vertex v
+	// returns number of directed edges from vertex v
 	public int outDegree(int v) {
 		if(validateVertex(v)<0)
 			return -1;
@@ -101,18 +101,16 @@ public class DAG {
 
 	// to find the LCA, we have to traverse the graph backwards as the LCA comes before the two nodes
 	public DAG reverse() {
-		// create new DAG with same number of vertices
-		DAG reverse = new DAG(V); 
-		// loop through vertices of graph, reversing direction of edges
+		DAG reverse = new DAG(V); //new dag of same parameter
 		for (int v = 0; v < V; v++) {
 			for (int w : adj(v)) {
-				reverse.addEdge(w, v);
+				reverse.addEdge(w, v); //reverse the direction of the edges
 			}
 		}
 		return reverse;
 	}	 
 
-	// returns lowest common ancestor of v and w in DAG
+	// returns lowest common ancestor of v and w
 	public int findLCADAG(int v, int w) {
 		findCycle(0);
 		if(hasCycle) {

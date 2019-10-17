@@ -4,10 +4,10 @@ import org.junit.Test;
 
 public class testLowestCommonAncestor {
 
-
+	
 	// Development Task 1 - LCA Binary Tree Implementation Tests
 
-
+	
 	// test Node constructor
 	@Test
 	public void testNodeConstructor()
@@ -144,21 +144,21 @@ public class testLowestCommonAncestor {
 
 	// Development Task 2 - LCA DAG Implementation Tests
 
-
+	
 	// test DAG constructor working as expected
 	@Test
 	public void testDAGConstructor() {
-
+		
 		// test new DAG initialised with 6 vertices
 		DAG dag = new DAG(6);
 		assertEquals(6, dag.V());
 		assertEquals(0, dag.E());
-
+		
 		// test new DAG initialised with no vertices
 		DAG dag1 = new DAG(0);
 		assertEquals(0, dag1.V());
 		assertEquals(0, dag1.E());
-
+		
 		// test exception thrown when number of vertices is negative, V should remain null
 		try {
 			DAG dagException = new DAG(-1);
@@ -172,7 +172,7 @@ public class testLowestCommonAncestor {
 	// test V() function returns correct number of vertices
 	@Test
 	public void testV() {
-
+		
 		// test with DAG initialised with 6 vertices
 		DAG dag = new DAG(6);
 		assertEquals(6, dag.V());
@@ -198,32 +198,32 @@ public class testLowestCommonAncestor {
 		// create 6 node DAG with no edges as yet
 		DAG dag = new DAG(6);
 		assertEquals(0, dag.E());
-
+		
 		// add first edge
 		dag.addEdge(0, 1);
 		assertEquals(1, dag.E());
-
+		
 		// second edge
 		dag.addEdge(1, 2);
 		assertEquals(2, dag.E());
-
+		
 		// third, fourth, fifth edge
 		dag.addEdge(2, 3);
 		dag.addEdge(3, 4);
 		dag.addEdge(4, 5);
 		assertEquals(5, dag.E());
-
+		
 		// add another edge from vertex 3
 		dag.addEdge(3, 5);
 		assertEquals(6, dag.E());
-
+		
 		// cannot add edge where vertex is outside set of vertices 0 to N-1 (5), validateVertex() function should prevent this case, expect number of edges still equal to 6
 		dag.addEdge(5, 6);
 		assertEquals(6, dag.E());
-
+		
 		dag.addEdge(-1, 2);
 		assertEquals(6, dag.E());
-
+		
 	}
 
 	// test inDegree() function returns correct number of incident edges
@@ -246,15 +246,15 @@ public class testLowestCommonAncestor {
 		// third edge into 1
 		dag.addEdge(2, 1);
 		assertEquals(3, dag.inDegree(1));
-
+		
 		// ensure inDegree() is not counting attempt to add edge from vertex undefined by graph to existing vertex (should give same result as before)
 		dag.addEdge(7, 1);
 		assertEquals(3, dag.inDegree(1));
-
+		
 		// check inDegree() returns -1 when parameter v is not included in DCA vertices
 		assertEquals(-1, dag.inDegree(-1));
 		assertEquals(-1, dag.inDegree(6));
-
+				
 	}
 
 	// test outDegree() function returns correct number of outgoing edges
@@ -277,7 +277,7 @@ public class testLowestCommonAncestor {
 		// third edge out of 0
 		dag.addEdge(0, 3);
 		assertEquals(3, dag.outDegree(0));
-
+		
 		// ensure outDegree() is not counting attempt to add edge from existing vertex to vertex undefined by graph (should give same result as before)
 		dag.addEdge(0, 7);
 		assertEquals(3, dag.outDegree(0));
@@ -285,7 +285,7 @@ public class testLowestCommonAncestor {
 		// check outDegree() returns -1 when parameter v is not included in DCA vertices
 		assertEquals(-1, dag.outDegree(-1));
 		assertEquals(-1, dag.outDegree(6));
-
+		
 	}
 
 	// test findLCA() method in DAG.java correctly identifies lowest common ancestor 
@@ -297,7 +297,7 @@ public class testLowestCommonAncestor {
 		dagCycle.addEdge(0, 1);
 		dagCycle.addEdge(1, 2);
 		dagCycle.addEdge(2, 1);
-
+		
 		assertEquals(-1, dagCycle.findLCADAG(1, 2));
 
 		// test on acyclical graph for comparison
@@ -305,15 +305,15 @@ public class testLowestCommonAncestor {
 		dagNoCycle.addEdge(0, 1);
 		dagNoCycle.addEdge(1, 2);
 		dagNoCycle.addEdge(1, 3);
-
+		
 		assertEquals(1, dagNoCycle.findLCADAG(1, 2));
-
+		
 		// set up DAG on which to run more tests
 		DAG dag = new DAG(8);
-
+		
 		// test when no edges added - if graph is invalid or no LCA is found, should return -1
 		assertEquals(-1, dag.findLCADAG(1, 3));
-
+		
 		dag.addEdge(0, 1);
 		dag.addEdge(2, 1);
 		dag.addEdge(1, 3);
@@ -323,40 +323,40 @@ public class testLowestCommonAncestor {
 		dag.addEdge(4, 6);
 		dag.addEdge(5, 7);
 		dag.addEdge(6, 7);
-
+		
 		// test when no LCA present
 		assertEquals(-1, dag.findLCADAG(0, 2));
-
+		
 		// test when one of the parameters is the LCA
 		assertEquals(0, dag.findLCADAG(0, 1));
-
+		
 		// test parameters at opposite ends of graph, with one having no incoming edges
 		assertEquals(0, dag.findLCADAG(0, 7));
-
+		
 		// test when one parameter has 2 in-going edges (6)
 		assertEquals(6, dag.findLCADAG(6, 7));
-
+		
 		dag.addEdge(4, 7);
-
+		
 		// test when both parameter vertices have 2 in-going edges (7 has incoming edges from 4 and 6 -> should return LCA = 6)
 		assertEquals(6, dag.findLCADAG(6, 7));
-
+		
 		// test two vertices 5 and 6
 		assertEquals(1, dag.findLCADAG(6, 5));
-
+		
 		// add another edge between 4 and 5, this should change previous result with new LCA = 4
 		dag.addEdge(4, 5);
-
+		
 		// test above hypothesis
 		assertEquals(4, dag.findLCADAG(6, 5));
-
+		
 		// test to ensure we cannot run findLCADAG() method on parameters outside of set of vertices
 		try {
-			assertEquals(4, dag.findLCADAG(8, 5));
+		assertEquals(4, dag.findLCADAG(8, 5));
 		} catch (java.lang.ArrayIndexOutOfBoundsException e) {
-
+			
 		}
-
+		
 	}
 
 }
