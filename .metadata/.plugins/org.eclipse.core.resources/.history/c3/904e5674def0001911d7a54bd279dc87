@@ -278,11 +278,30 @@ public class testLowestCommonAncestor {
 		
 	}
 
+	// test if hasCycle() method can correctly differentiate between cyclical and non-cyclical graphs
+	@Test
+    public void testHasCycle() {
+
+		DAG dagCycle = new DAG(3);
+		dagCycle.addEdge(0, 1);
+		dagCycle.addEdge(1, 2);
+		dagCycle.addEdge(2, 1);
+		
+		assertTrue(dagCycle.hasCycle());
+		
+		DAG dagNoCycle = new DAG(4);
+		dagNoCycle.addEdge(0, 1);
+		dagNoCycle.addEdge(1, 2);
+		dagNoCycle.addEdge(1, 3);
+		
+		assertFalse(dagNoCycle.hasCycle());
+		
+	}
+
 	// test findLCA() method in DAG.java correctly identifies lowest common ancestor 
 	@Test 
 	public void testFindLCADAG() {
 
-		// test for cyclical graph, should return -1 if hasCycle() method works correctly
 		DAG dagCycle = new DAG(3);
 		dagCycle.addEdge(0, 1);
 		dagCycle.addEdge(1, 2);
@@ -290,13 +309,12 @@ public class testLowestCommonAncestor {
 		
 		assertEquals(-1, dagCycle.findLCADAG(1, 2));
 
-		// test on acyclical graph for comparison
 		DAG dagNoCycle = new DAG(4);
 		dagNoCycle.addEdge(0, 1);
 		dagNoCycle.addEdge(1, 2);
 		dagNoCycle.addEdge(1, 3);
 		
-		assertEquals(1, dagNoCycle.findLCADAG(1, 2));
+		assertEquals(-1, dagCycle.findLCADAG(1, 2));
 		
 	}
 

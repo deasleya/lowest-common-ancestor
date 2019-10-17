@@ -111,7 +111,7 @@ public class DAG {
 	}	 
 
 	// returns lowest common ancestor of v and w
-	public int findLCADAG(int v, int w) {
+	public int findLCA(int v, int w) {
 		findCycle(0);
 		if(hasCycle) {
 			// graph is not a DAG
