@@ -2,7 +2,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class TestLowestCommonAncestor {
+public class testLowestCommonAncestor {
 
 
 	// Development Task 1 - LCA Binary Tree Implementation Tests
