@@ -247,7 +247,7 @@ public class testLowestCommonAncestor {
 		dag.addEdge(2, 1);
 		assertEquals(3, dag.inDegree(1));
 		
-		// ensure inDegree() is not counting attempt to add edge from vertex undefined by graph to existing vertex (should give same result as before)
+		// ensure inDegree() is not counting attempt to add edge from vertex outside of graph to existing vertex (should give same result as before)
 		dag.addEdge(7, 1);
 		assertEquals(3, dag.inDegree(1));
 		

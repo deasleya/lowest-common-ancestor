@@ -247,7 +247,6 @@ public class testLowestCommonAncestor {
 		dag.addEdge(2, 1);
 		assertEquals(3, dag.inDegree(1));
 		
-		// ensure inDegree() is not counting attempt to add edge from vertex undefined by graph to existing vertex (should give same result as before)
 		dag.addEdge(7, 1);
 		assertEquals(3, dag.inDegree(1));
 		
@@ -276,10 +275,6 @@ public class testLowestCommonAncestor {
 
 		// third edge out of 0
 		dag.addEdge(0, 3);
-		assertEquals(3, dag.outDegree(0));
-		
-		// ensure outDegree() is not counting attempt to add edge from existing vertex to vertex undefined by graph (should give same result as before)
-		dag.addEdge(0, 7);
 		assertEquals(3, dag.outDegree(0));
 
 		// check outDegree() returns -1 when parameter v is not included in DCA vertices
