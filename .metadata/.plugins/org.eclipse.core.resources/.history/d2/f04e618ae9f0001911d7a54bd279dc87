@@ -1,7 +1,5 @@
 // LCA DEVELOPMENT TASK 1 - BINARY TREE IMPLEMENTATION
 
-// largely based on geeksforgeeks.org  code 
-
 import java.util.ArrayList;
 import java.util.List; 
 
