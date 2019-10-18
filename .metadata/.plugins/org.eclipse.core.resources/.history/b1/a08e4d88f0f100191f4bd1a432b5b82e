@@ -1,0 +1,362 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class testLowestCommonAncestor {
+
+
+	// Development Task 1 - LCA Binary Tree Implementation Tests
+
+
+	// test Node constructor
+	@Test
+	public void testNodeConstructor()
+	{
+		Node node = new Node(0);
+		assertEquals(0, node.data);
+		assertEquals(null, node.left);
+		assertEquals(null, node.right);
+	}
+
+	// test creation of binary tree
+	@Test
+	public void testLCAConstructor() {
+
+		// create empty binary tree and check methods run
+		BinaryTreeLCA bt = new BinaryTreeLCA();
+		assertEquals(null, bt.root);
+		bt.add(1);
+		bt.delete(1);
+
+	}
+
+	// test add() method
+	@Test
+	public void testAdd() {
+
+		// create new empty binary tree, expect root to be null
+		BinaryTreeLCA bt = new BinaryTreeLCA();
+		assertEquals(null, bt.root);
+
+		// add value of 2, this will become our root, expect root value to be 2 and child nodes to be null
+		bt.add(2);
+		assertEquals(2, bt.root.data);
+		assertEquals(null, bt.root.left);
+		assertEquals(null, bt.root.right);
+
+		// add node with value of 4, expect this to become right child node of root and left child node to remain null
+		bt.add(4);
+		assertEquals(4, bt.root.right.data);
+		assertEquals(null, bt.root.left);
+
+		// add node with value of 9, expect this to become right child node{4}, left child node should remain null
+		bt.add(9);
+		assertEquals(9, bt.root.right.right.data);
+		assertEquals(null, bt.root.right.left);
+
+		// add node with value of 1, expect this to become left child node of root, both child nodes of this node should be null
+		bt.add(1);
+		assertEquals(1, bt.root.left.data);
+		assertEquals(null, bt.root.left.left);
+		assertEquals(null, bt.root.left.right);
+
+		// add node with value of 7, expect this to become left child node of node{9}
+		bt.add(7);
+		assertEquals(7, bt.root.right.right.left.data);
+
+	}
+
+	// test delete() method checking if node has been correctly deleted from binary tree
+	@Test
+	public void testDelete() {
+
+		// create and populate binary tree
+		BinaryTreeLCA bt = new BinaryTreeLCA();
+		bt.add(5);
+		bt.add(2);
+		bt.add(8);
+		bt.add(6);
+		bt.add(1);
+		bt.add(7);
+		bt.add(4);
+
+		// we wish to delete node with value 1, first assertion shows node with value 1, after delete() carried out, node is null as expected
+		assertEquals(1, bt.root.left.left.data);
+		bt.delete(1);
+		assertEquals(null, bt.root.left.left);
+
+		// we wish to delete node with value 6, first assertion shows node with value 6, after delete() carried out, node{6} has been deleted and replaced with child node {7}
+		assertEquals(6, bt.root.right.left.data);
+		bt.delete(6);
+		assertEquals(7, bt.root.right.left.data);
+
+
+		// deleting root, root successfully replaced with smallest value from right subtree {7}
+		assertEquals(5, bt.root.data);
+		bt.delete(5);
+		assertEquals(7, bt.root.data);
+
+	}
+
+	// test findLCA() method in binary tree implementation to ensure correct value is being returned
+	@Test
+	public void testFindLCA() {
+
+		// create and populate binary tree
+		BinaryTreeLCA bt = new BinaryTreeLCA();
+
+		// check when tree is empty
+		assertEquals("The binary tree is empty", -1, bt.findLCA(1, 2));
+
+		bt.add(5);
+
+		// check when tree only has 1 node
+		assertEquals(-1, bt.findLCA(5, 2));
+
+		bt.add(2);
+		bt.add(8);
+		bt.add(6);
+		bt.add(1);
+		bt.add(7);
+		bt.add(4);
+
+		// where one of parameters is LCA
+		assertEquals(5, bt.findLCA(8,5));
+		assertEquals(2, bt.findLCA(2,4));
+
+		// where parameters are same
+		// our binary tree implementation does not allow for duplicates, but parameters may refer to one node twice
+		assertEquals(5, bt.findLCA(5,5));
+
+		// where parameter nodes are in different subtrees
+		assertEquals(5, bt.findLCA(7,4));
+		assertEquals(2, bt.findLCA(4,1));
+		assertEquals(5, bt.findLCA(8,2));
+
+		// where one or both parameters are not in the binary tree
+		assertEquals(-1, bt.findLCA(8,11));
+		assertEquals(-1, bt.findLCA(11,3));
+
+	}
+
+
+
+
+	// Development Task 2 - LCA DAG Implementation Tests
+
+
+	// test DAG constructor working as expected
+	@Test
+	public void testDAGConstructor() {
+
+		// test new DAG initialised with 6 vertices
+		DAG dag = new DAG(6);
+		assertEquals(6, dag.V());
+		assertEquals(0, dag.E());
+
+		// test new DAG initialised with no vertices
+		DAG dag1 = new DAG(0);
+		assertEquals(0, dag1.V());
+		assertEquals(0, dag1.E());
+
+		// test exception thrown when number of vertices is negative, V should remain null
+		try {
+			DAG dagException = new DAG(-1);
+			assertEquals(null, dagException.V());
+		} 
+		catch (IllegalArgumentException e) {
+		}
+
+	}
+
+	// test V() function returns correct number of vertices
+	@Test
+	public void testV() {
+
+		// test with DAG initialised with 6 vertices
+		DAG dag = new DAG(6);
+		assertEquals(6, dag.V());
+
+		// test with DAG initialised with no vertices
+		DAG dag1 = new DAG(0);
+		assertEquals(0, dag1.V());
+
+		// test with DAG initialised with negative number of vertices
+		try {
+			DAG dag2 = new DAG(-1);
+			assertEquals(null, dag2.V());
+		}
+		catch (IllegalArgumentException e) {
+		}			
+
+	}
+
+	// test addEdge() function adds edge as expected, also testing E() returns correct number of edges in this test method
+	@Test
+	public void testAddEdge() {
+
+		// create 6 node DAG with no edges as yet
+		DAG dag = new DAG(6);
+		assertEquals(0, dag.E());
+
+		// add first edge
+		dag.addEdge(0, 1);
+		assertEquals(1, dag.E());
+
+		// second edge
+		dag.addEdge(1, 2);
+		assertEquals(2, dag.E());
+
+		// third, fourth, fifth edge
+		dag.addEdge(2, 3);
+		dag.addEdge(3, 4);
+		dag.addEdge(4, 5);
+		assertEquals(5, dag.E());
+
+		// add another edge from vertex 3
+		dag.addEdge(3, 5);
+		assertEquals(6, dag.E());
+
+		// cannot add edge where vertex is outside set of vertices 0 to N-1 (5), validateVertex() function should prevent this case, expect number of edges still equal to 6
+		dag.addEdge(5, 6);
+		assertEquals(6, dag.E());
+
+		dag.addEdge(-1, 2);
+		assertEquals(6, dag.E());
+
+	}
+
+	// test inDegree() function returns correct number of incident edges
+	@Test
+	public void testInDegree() {
+
+		// create 6 node DAG with no edges as yet
+		DAG dag = new DAG(6);
+		assertEquals(0, dag.inDegree(0));
+
+		// add first edge and check in degree for 2 vertices involved
+		dag.addEdge(0, 1);
+		assertEquals(0, dag.inDegree(0));
+		assertEquals(1, dag.inDegree(1));
+
+		// second edge directed at 1
+		dag.addEdge(4, 1);
+		assertEquals(2, dag.inDegree(1));
+
+		// third edge into 1
+		dag.addEdge(2, 1);
+		assertEquals(3, dag.inDegree(1));
+
+		// ensure inDegree() is not counting attempt to add edge from vertex undefined by graph to existing vertex (should give same result as before)
+		dag.addEdge(7, 1);
+		assertEquals(3, dag.inDegree(1));
+
+		// check inDegree() returns -1 when parameter v is not included in DCA vertices
+		assertEquals(-1, dag.inDegree(-1));
+		assertEquals(-1, dag.inDegree(6));
+
+	}
+
+	// test outDegree() function returns correct number of outgoing edges
+	@Test
+	public void testOutDegree() {
+
+		// create 6 node DAG with no edges as yet
+		DAG dag = new DAG(6);
+		assertEquals(0, dag.outDegree(0));
+
+		// add first edge and check out degree for 2 vertices involved
+		dag.addEdge(0, 1);
+		assertEquals(1, dag.outDegree(0));
+		assertEquals(0, dag.outDegree(1));
+
+		// second edge coming from 0
+		dag.addEdge(0, 2);
+		assertEquals(2, dag.outDegree(0));
+
+		// third edge out of 0
+		dag.addEdge(0, 3);
+		assertEquals(3, dag.outDegree(0));
+
+		// ensure outDegree() is not counting attempt to add edge from existing vertex to vertex undefined by graph (should give same result as before)
+		dag.addEdge(0, 7);
+		assertEquals(3, dag.outDegree(0));
+
+		// check outDegree() returns -1 when parameter v is not included in DCA vertices
+		assertEquals(-1, dag.outDegree(-1));
+		assertEquals(-1, dag.outDegree(6));
+
+	}
+
+	// test findLCA() method in DAG.java correctly identifies lowest common ancestor 
+	@Test 
+	public void testFindLCADAG() {
+
+		// test for cyclical graph, should return -1 if hasCycle() method works correctly
+		DAG dagCycle = new DAG(3);
+		dagCycle.addEdge(0, 1);
+		dagCycle.addEdge(1, 2);
+		dagCycle.addEdge(2, 1);
+
+		assertEquals(-1, dagCycle.findLCADAG(1, 2));
+
+		// test on acyclical graph for comparison
+		DAG dagNoCycle = new DAG(4);
+		dagNoCycle.addEdge(0, 1);
+		dagNoCycle.addEdge(1, 2);
+		dagNoCycle.addEdge(1, 3);
+
+		assertEquals(1, dagNoCycle.findLCADAG(1, 2));
+
+		// set up DAG on which to run more tests
+		DAG dag = new DAG(8);
+
+		// test when no edges added - if graph is invalid or no LCA is found, should return -1
+		assertEquals(-1, dag.findLCADAG(1, 3));
+
+		dag.addEdge(0, 1);
+		dag.addEdge(2, 1);
+		dag.addEdge(1, 3);
+		dag.addEdge(1, 4);
+		dag.addEdge(1, 5);
+		dag.addEdge(3, 6);
+		dag.addEdge(4, 6);
+		dag.addEdge(5, 7);
+		dag.addEdge(6, 7);
+
+		// test when no LCA present
+		assertEquals(-1, dag.findLCADAG(0, 2));
+
+		// test when one of the parameters is the LCA
+		assertEquals(0, dag.findLCADAG(0, 1));
+
+		// test parameters at opposite ends of graph, with one having no incoming edges
+		assertEquals(0, dag.findLCADAG(0, 7));
+
+		// test when one parameter has 2 in-going edges (6)
+		assertEquals(6, dag.findLCADAG(6, 7));
+
+		dag.addEdge(4, 7);
+
+		// test when both parameter vertices have 2 in-going edges (7 has incoming edges from 4 and 6 -> should return LCA = 6)
+		assertEquals(6, dag.findLCADAG(6, 7));
+
+		// test two vertices 5 and 6
+		assertEquals(1, dag.findLCADAG(6, 5));
+
+		// add another edge between 4 and 5, this should change previous result with new LCA = 4
+		dag.addEdge(4, 5);
+
+		// test above hypothesis
+		assertEquals(4, dag.findLCADAG(6, 5));
+
+		// test to ensure we cannot run findLCADAG() method on parameters outside of set of vertices
+		try {
+			assertEquals(4, dag.findLCADAG(8, 5));
+		} catch (java.lang.ArrayIndexOutOfBoundsException e) {
+
+		}
+
+	}
+
+}
